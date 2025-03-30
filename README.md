@@ -1,7 +1,7 @@
 Role Name (apache-first-revision)
 =========
 
-A brief description of the role goes here.
+This is an Ansible Role for Apache Setup.
 
 Requirements
 ------------
