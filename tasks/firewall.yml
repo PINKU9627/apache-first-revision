@@ -1,0 +1,9 @@
+- name: Allow HTTP traffice from firewall.
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+- name: Reload the firewall service.
+  service:
+    name: firewalld
+    state: reloaded

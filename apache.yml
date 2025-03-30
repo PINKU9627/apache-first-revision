@@ -1,0 +1,31 @@
+---
+- name: Apache Web Server Configuration Playbook.
+  hosts: RHEL9
+  become: true
+  tasks:
+    - name: Installing latest Apache packages.
+      dnf:
+        name: httpd
+        state: latest
+    - name: Starting & enabling Apache service.
+      service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: Setting up Apache web server.
+      copy:
+        content: "Welcome to Cricbuzz World !!!!!"
+        dest: /var/www/html/index.html
+    - name: Restart the Apache service.
+      service:
+        name: httpd
+        state: restarted
+    - name: Allowing HTTP traffic in Firewall.
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+    - name: Reload the firewall.
+      service:
+        name: firewalld
+        state: reloaded

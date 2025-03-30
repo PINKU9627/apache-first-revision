@@ -1,0 +1,6 @@
+---
+# handlers file for /etc/ansible/roles/apache-first-revision
+- name: Restarting Apache HTTPD Service.
+  service:
+    name: httpd
+    state: restarted

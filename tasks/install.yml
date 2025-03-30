@@ -1,0 +1,4 @@
+- name: Installing Apache Package.
+  dnf:
+    name: httpd
+    state: latest

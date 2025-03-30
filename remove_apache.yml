@@ -1,0 +1,22 @@
+---
+- name: Apache Web Server Removal Playbook.
+  hosts: RHEL9
+  become: true
+  tasks:
+    - name: Removing Apache packages.
+      dnf:
+        name: httpd
+        state: absent
+    - name: Removing 'index.html' page.
+      file:
+        path: /var/www/html/index.html
+        state: absent
+    - name: Removing HTTP traffic from Firewall.
+      firewalld:
+        service: http
+        permanent: yes
+        state: disabled
+    - name: Reload the firewall.
+      service:
+        name: firewalld
+        state: reloaded
